@@ -11,9 +11,8 @@ local hp_bar = {
 }
 
 function hp_bar:on_step(dtime)
-	local wielder = self.wielder
-	if wielder == nil or
-			minetest.get_player_by_name(wielder:get_player_name()) == nil then
+	local wielder = self.wielder and minetest.get_player_by_name(self.wielder)
+	if wielder == nil then
 		self.object:remove()
 		return
 	end
@@ -35,7 +34,7 @@ local function add_HP_gauge(player)
 	if ent ~= nil then
 		ent:set_attach(player, "", {x = 0, y = 10, z = 0}, {x = 0, y = 0, z = 0})
 		ent = ent:get_luaentity()
-		ent.wielder = player
+		ent.wielder = player:get_player_name()
 	end
 end
 
@@ -44,3 +43,4 @@ if minetest.setting_getbool("health_bars") ~= false and
 		minetest.setting_getbool("enable_damage") then
 	minetest.register_on_joinplayer(add_HP_gauge)
 end
+
