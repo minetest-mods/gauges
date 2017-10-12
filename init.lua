@@ -10,9 +10,17 @@ local hp_bar = {
 	wielder = nil,
 }
 
+function vector.sqdist(a, b)
+	local dx = a.x - b.x
+	local dy = a.y - b.y
+	local dz = a.z - b.z
+	return dx*dx + dy*dy + dz*dz
+end
+
 function hp_bar:on_step(dtime)
 	local wielder = self.wielder and minetest.get_player_by_name(self.wielder)
-	if wielder == nil then
+	if wielder == nil or
+			vector.sqdist(wielder:get_pos(), self.object:get_pos()) > 3 then
 		self.object:remove()
 		return
 	end
@@ -28,7 +36,8 @@ end
 
 minetest.register_entity("gauges:hp_bar", hp_bar)
 
-local function add_HP_gauge(player)
+local function add_HP_gauge(name)
+	local player = minetest.get_player_by_name(name)
 	local pos = player:get_pos()
 	local ent = minetest.add_entity(pos, "gauges:hp_bar")
 	if ent ~= nil then
@@ -41,6 +50,8 @@ end
 -- If health_bars not defined or set to true
 if minetest.setting_getbool("health_bars") ~= false and
 		minetest.setting_getbool("enable_damage") then
-	minetest.register_on_joinplayer(add_HP_gauge)
+	minetest.register_on_joinplayer(function(player)
+		minetest.after(1, add_HP_gauge, player:get_player_name())
+	end)
 end
 
