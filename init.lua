@@ -54,4 +54,3 @@ if minetest.setting_getbool("health_bars") ~= false and
 		minetest.after(1, add_HP_gauge, player:get_player_name())
 	end)
 end
-
