@@ -55,8 +55,8 @@ local function add_HP_gauge(name)
 end
 
 if
-	minetest.setting_getbool("health_bars") ~= false and
-	minetest.setting_getbool("enable_damage")
+	minetest.settings:get_bool("enable_damage") and
+	minetest.settings:get_bool("health_bars") ~= false
 then
 	minetest.register_on_joinplayer(function(player)
 		minetest.after(1, add_HP_gauge, player:get_player_name())
