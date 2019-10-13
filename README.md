@@ -60,9 +60,7 @@ on that line.
 
 ## Version compatibility
 
-Gauges is currently primarily tested with Minetest 0.4.17.
-It may or may not work with newer or older versions. Issues arising in older
-versions than 0.4.17 will generally not be fixed.
+Gauges requires Minetest 5.0.0 or newer to work as expected.
 
 ## License
 
