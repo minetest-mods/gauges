@@ -1,5 +1,7 @@
 # Gauges
 
+![Preview](https://content.minetest.net/uploads/GBoKauWSou.png)
+
 Gauges for [Minetest](https://www.minetest.net/), a free and open source infinite
 world block sandbox game.
 
