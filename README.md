@@ -20,9 +20,7 @@ git clone https://github.com/minetest-mods/gauges.git
 
 You can also
 [download a ZIP archive](https://github.com/minetest-mods/gauges/archive/master.zip)
-of Gauges. If you do so, you will need to extract the archive then rename
-the resulting folder from `gauges-master` to `gauges` – this is
-**absolutely** required, as the mod won't work otherwise.
+of Gauges.
 
 ### Enable the mod
 
