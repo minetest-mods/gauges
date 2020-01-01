@@ -7,6 +7,10 @@ if minetest.settings:get_bool("health_bars") == false or
 		not minetest.settings:get_bool("enable_damage")
 then return end
 
+-- Localize the vector distance function for better performance, as it's called
+-- on every step
+local vector_distance = vector.distance
+
 minetest.register_entity("gauges:hp_bar", {
 	visual = "sprite",
 	visual_size = {x=1, y=1/16, z=1},
@@ -20,7 +24,7 @@ minetest.register_entity("gauges:hp_bar", {
 
 		if not player or
 				not minetest.is_player(player) or
-				vector.distance(player:get_pos(), self.object:get_pos()) > 3
+				vector_distance(player:get_pos(), self.object:get_pos()) > 3
 		then
 			self.object:remove()
 			return
