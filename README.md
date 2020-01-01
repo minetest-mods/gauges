@@ -64,7 +64,7 @@ Gauges requires Minetest 5.0.0 or newer to work as expected.
 
 ## License
 
-Copyright © 2014-2020 4aiman, Hugo Locurcio and contributors
+Copyright © 2014-2020 Hugo Locurcio and contributors
 
 - Code is licensed under the MIT license, see
   [`LICENSE.md`](LICENSE.md) for details.
