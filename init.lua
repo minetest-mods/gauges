@@ -13,15 +13,16 @@ minetest.register_entity("gauges:hp_bar", {
 	physical = false,
 
 	on_step = function(self)
-		local wielder = self.wielder and self.wielder
+		local player = self.wielder
 
-		if not wielder or v_dist(wielder:get_pos(), self.object:get_pos()) > 3 then
+		if not player or not minetest.is_player(player)
+		or v_dist(player:get_pos(), self.object:get_pos()) > 3 then
 			self.object:remove()
 			return
 		end
 
-		local hp = wielder:get_hp() <= 20 and wielder:get_hp() or 20
-		local breath = wielder:get_breath() <= 10 and wielder:get_breath() or 11
+		local hp     = player:get_hp()     <= 20 and player:get_hp()     or 20
+		local breath = player:get_breath() <= 10 and player:get_breath() or 11
 
 		if self.hp ~= hp or self.breath ~= breath then
 			self.object:set_properties({
@@ -30,7 +31,7 @@ minetest.register_entity("gauges:hp_bar", {
 					"breath_" .. tostring(breath) .. ".png"
 				}
 			})
-			self.hp = hp
+			self.hp     = hp
 			self.breath = breath
 		end
 	end
