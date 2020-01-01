@@ -9,7 +9,7 @@ then return end
 
 minetest.register_entity("gauges:hp_bar", {
 	visual = "sprite",
-	visual_size = {x=1, y=1/16, z = 1},
+	visual_size = {x=1, y=1/16, z=1},
 	-- The texture is changed later in the code
 	textures = {"blank.png"},
 	collisionbox = {0},
