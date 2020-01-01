@@ -1,6 +1,6 @@
 -- gauges: Adds health/breath bars above players
 --
--- Copyright © 2014-2019 4aiman, Hugo Locurcio and contributors - MIT License
+-- Copyright © 2014-2020 4aiman, Hugo Locurcio and contributors - MIT License
 -- See `LICENSE.md` included in the source distribution for details.
 
 local hp_bar = {
