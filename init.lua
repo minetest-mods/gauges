@@ -21,12 +21,13 @@ minetest.register_entity("gauges:hp_bar", {
 
 	on_step = function(self)
 		local player = self.wielder
+		local gauge = self.object
 
 		if not player or
 				not minetest.is_player(player) or
-				vector_distance(player:get_pos(), self.object:get_pos()) > 3
+				vector_distance(player:get_pos(), gauge:get_pos()) > 3
 		then
-			self.object:remove()
+			gauge:remove()
 			return
 		end
 
@@ -34,7 +35,7 @@ minetest.register_entity("gauges:hp_bar", {
 		local breath = player:get_breath() <= 10 and player:get_breath() or 11
 
 		if self.hp ~= hp or self.breath ~= breath then
-			self.object:set_properties({
+			gauge:set_properties({
 				textures = {
 					"health_"..tostring(hp)..".png^"..
 					"breath_"..tostring(breath)..".png"
@@ -47,10 +48,14 @@ minetest.register_entity("gauges:hp_bar", {
 })
 
 local function add_gauge(player)
-	local entity = minetest.add_entity(player:get_pos(), "gauges:hp_bar")
+	if player and minetest.is_player(player) then
+		local entity = minetest.add_entity(player:get_pos(), "gauges:hp_bar")
+		-- check for minetest_game 0.4.*
+		local height = minetest.get_modpath("player_api") and 19 or 9
 
-	entity:set_attach(player, "", {x=0, y=19, z=0}, {x=0, y=0, z=0})
-	entity:get_luaentity().wielder = player
+		entity:set_attach(player, "", {x=0, y=height, z=0}, {x=0, y=0, z=0})
+		entity:get_luaentity().wielder = player
+	end
 end
 
 minetest.register_on_joinplayer(function(player)

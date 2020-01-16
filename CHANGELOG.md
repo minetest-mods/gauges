@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.2] - 2020-01-16
+
+### Fixed
+
+- Fix crash when creating an entity if a player leaves the server quickly.
+
+### Changed
+
+- Restore Minetest 0.4.17 support. The version check works only with `minetest_game` with the `player_api` mod added in Minetest 5.0.
+
 ## [1.0.1] - 2020-01-01
 
 ### Changed
