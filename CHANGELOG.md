@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.3] - 2020-01-21
+
+### Fixed
+
+- Fix the problem when the Gauges lost the player
+
+### Changed
+
+- Now the Minetest version is checked using `minetest.get_version()`. It is very reliable.
+
 ## [1.0.2] - 2020-01-16
 
 ### Fixed
@@ -29,3 +39,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased]: https://github.com/minetest-mods/gauges/compare/v1.0.1...HEAD
 [1.0.1]: https://github.com/minetest-mods/gauges/compare/v1.0.0...v1.0.1
+[1.0.2]: https://github.com/minetest-mods/gauges/compare/v1.0.1...v1.0.2
+[1.0.3]: https://github.com/minetest-mods/gauges/compare/v1.0.2...v1.0.3
