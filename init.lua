@@ -50,8 +50,13 @@ minetest.register_entity("gauges:hp_bar", {
 local function add_gauge(player)
 	if player and minetest.is_player(player) then
 		local entity = minetest.add_entity(player:get_pos(), "gauges:hp_bar")
-		-- check for minetest_game 0.4.*
-		local height = minetest.get_modpath("player_api") and 19 or 9
+		local height = 19
+
+		-- check for Minetest 0.4.17
+		local version = tonumber(minetest.get_version().string:sub(1, 1))
+		if version and version < 5 then
+			height = 9
+		end
 
 		entity:set_attach(player, "", {x=0, y=height, z=0}, {x=0, y=0, z=0})
 		entity:get_luaentity().wielder = player
