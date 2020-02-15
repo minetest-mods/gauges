@@ -16,7 +16,8 @@ local function add_gauge(player)
 		local entity = minetest.add_entity(player:get_pos(), "gauges:hp_bar")
 		local height = 19
 
-		-- check for Minetest 0.4.17
+		-- Check for Minetest 0.4.17 and adjust the entity height if needed
+		-- (The entity height offset was changed in Minetest 5.0.0.)
 		local version = tonumber(minetest.get_version().string:sub(1, 1))
 		if version and version < 5 then
 			height = 9

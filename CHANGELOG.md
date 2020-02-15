@@ -7,15 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.0.3] - 2020-01-21
+## [1.0.3] - 2020-02-15
 
 ### Fixed
 
-- Fix the problem when the Gauges lost the player
+- Fix an issue with gauges occasionally no longer appearing above a player.
 
 ### Changed
 
-- Now the Minetest version is checked using `minetest.get_version()`. It is very reliable.
+- Improved the reliability of the Minetest version check (for compatibility with 0.4.17).
 
 ## [1.0.2] - 2020-01-16
 
