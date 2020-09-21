@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.4] - 2020-09-21
+
+### Changed
+
+- Gauges entities will be removed when disable or change server mode.
+
 ## [1.0.3] - 2020-02-15
 
 ### Fixed

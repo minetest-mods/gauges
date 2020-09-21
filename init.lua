@@ -3,9 +3,10 @@
 -- Copyright © 2014-2020 4aiman, Hugo Locurcio and contributors - MIT License
 -- See `LICENSE.md` included in the source distribution for details.
 
-if minetest.settings:get_bool("health_bars") == false or
-		not minetest.settings:get_bool("enable_damage")
-then return end
+local enabled = minetest.settings:get_bool("health_bars") ~= false
+if enabled then
+	enabled = minetest.settings:get_bool("enable_damage")
+end
 
 -- Localize the vector distance function for better performance,
 -- as it's called on every step
@@ -39,7 +40,8 @@ minetest.register_entity("gauges:hp_bar", {
 		local player = self.wielder
 		local gauge = self.object
 
-		if not player or not player:is_player() then
+		if not enabled or
+				not player or not player:is_player() then
 			gauge:remove()
 			return
 		elseif vector_distance(player:get_pos(), gauge:get_pos()) > 3 then
@@ -64,6 +66,8 @@ minetest.register_entity("gauges:hp_bar", {
 	end
 })
 
-minetest.register_on_joinplayer(function(player)
-	minetest.after(1, add_gauge, player)
-end)
+if enabled then
+	minetest.register_on_joinplayer(function(player)
+		minetest.after(1, add_gauge, player)
+	end)
+end
