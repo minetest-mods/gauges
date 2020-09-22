@@ -8,21 +8,21 @@ if enabled then
 	enabled = minetest.settings:get_bool("enable_damage")
 end
 
--- Localize the vector distance function for better performance,
+-- Localize this functions for better performance,
 -- as it's called on every step
 local vector_distance = vector.distance
+local min = math.min
+local max_breath = minetest.PLAYER_MAX_BREATH_DEFAULT or 11
+
+local mt_5 = minetest.features.object_independent_selectionbox
 
 local function add_gauge(player)
 	if player and player:is_player() then
 		local entity = minetest.add_entity(player:get_pos(), "gauges:hp_bar")
-		local height = 19
 
-		-- Check for Minetest 0.4.17 and adjust the entity height if needed
-		-- (The entity height offset was changed in Minetest 5.0.0.)
-		local version = tonumber(minetest.get_version().string:sub(1, 1))
-		if version and version < 5 then
-			height = 9
-		end
+		-- Check Minetest version and set required entity heigh
+		-- (The entity height offset was changed in Minetest 5.0.0)
+		local height = mt_5 and 19 or 9
 
 		entity:set_attach(player, "", {x=0, y=height, z=0}, {x=0, y=0, z=0})
 		entity:get_luaentity().wielder = player
@@ -50,15 +50,23 @@ minetest.register_entity("gauges:hp_bar", {
 			return
 		end
 
-		local hp = player:get_hp() <= 20 and player:get_hp() or 20
-		local breath = player:get_breath() <= 10 and player:get_breath() or 11
+		local hp = min(player:get_hp(), 20)
+		local breath = min(player:get_breath(), max_breath)
 
 		if self.hp ~= hp or self.breath ~= breath then
+			local health_t = "health_"..hp..".png"
+			local breath_t = "breath_"..breath..".png"
+
+			if hp == 0 then
+				health_t = "blank.png"
+			end
+
+			if breath == max_breath then
+				breath_t = "blank.png"
+			end
+
 			gauge:set_properties({
-				textures = {
-					"health_"..hp..".png^"..
-					"breath_"..breath..".png"
-				}
+				textures = {health_t.."^"..breath_t}
 			})
 			self.hp = hp
 			self.breath = breath
