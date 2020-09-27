@@ -7,12 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.0.4] - 2020-09-23
+## [1.0.4] - 2020-09-27
+
+### Added
+
+- Support for Minetest 5.3 and improved Minetest version definitions.
 
 ### Changed
 
-- Gauges entities will be removed when disable or change server mode.
-- Added support for Minetest 5.3 and improved Minetest version definitions.
+- Gauge entities are now removed when the mod is disabled or when the server switches to creative mode.
 
 ## [1.0.3] - 2020-02-15
 
