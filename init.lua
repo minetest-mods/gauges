@@ -50,7 +50,7 @@ minetest.register_entity("gauges:hp_bar", {
 			return
 		end
 
-		local hp = min(player:get_hp(), 20)
+		local hp = min(math.ceil((player:get_hp() / player:get_properties().hp_max) * 20), 20)
 		local breath = min(player:get_breath(), max_breath)
 
 		if self.hp ~= hp or self.breath ~= breath then
