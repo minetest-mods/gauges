@@ -50,7 +50,11 @@ minetest.register_entity("gauges:hp_bar", {
 			return
 		end
 
-		local hp = min(math.ceil((player:get_hp() / player:get_properties().hp_max) * 20), 20)
+		-- hp calc credit: https://github.com/minetest/minetest/blob/6de8d77e17017cd5cc7b065d42566b6b1cd076cc/builtin/game/statbars.lua#L30-L37
+		local current = player:get_hp()
+		local max_display = math.max(20, math.max(player:get_properties().hp_max, current))
+		local hp = current / max_display * 20
+
 		local breath = min(player:get_breath(), max_breath)
 
 		if self.hp ~= hp or self.breath ~= breath then
