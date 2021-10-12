@@ -11,7 +11,6 @@ end
 -- Localize this functions for better performance,
 -- as it's called on every step
 local vector_distance = vector.distance
-local min = math.min
 local max = {
 	breath = 11,
 	hp = 20,
