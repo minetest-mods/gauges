@@ -12,7 +12,7 @@ end
 -- as it's called on every step
 local vector_distance = vector.distance
 local max = {
-	breath = 11,
+	breath = 10,
 	hp = 20,
 }
 
@@ -36,7 +36,7 @@ local function scaleToDefault(player, field)
 	-- Scale "hp" or "breath" to supported amount
 	local current = player["get_" .. field](player)
 	local max_display = math.max(player:get_properties()[field .. "_max"], current)
-	return current / max_display * max[field]
+	return math.round(current / max_display * max[field])
 end
 
 minetest.register_entity("gauges:hp_bar", {
