@@ -12,7 +12,7 @@ end
 -- as it's called on every step
 local vector_distance = vector.distance
 local max = {
-	breath = 10,
+	breath = 11,
 	hp = 20,
 }
 
@@ -71,7 +71,7 @@ minetest.register_entity("gauges:hp_bar", {
 				health_t = "blank.png"
 			end
 
-			if breath == max_breath then
+			if breath == max.breath then
 				breath_t = "blank.png"
 			end
 
