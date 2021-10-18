@@ -21,6 +21,11 @@ stds.minetest = {
 				"copy",
 			},
 		},
+		math = {
+			fields = {
+				"round",
+			},
+		}
 	}
 }
 

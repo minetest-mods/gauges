@@ -11,8 +11,10 @@ end
 -- Localize this functions for better performance,
 -- as it's called on every step
 local vector_distance = vector.distance
-local min = math.min
-local max_breath = minetest.PLAYER_MAX_BREATH_DEFAULT or 11
+local max = {
+	breath = 11,
+	hp = 20,
+}
 
 local mt_5 = minetest.features.object_independent_selectionbox
 
@@ -27,6 +29,14 @@ local function add_gauge(player)
 		entity:set_attach(player, "", {x=0, y=height, z=0}, {x=0, y=0, z=0})
 		entity:get_luaentity().wielder = player
 	end
+end
+
+-- credit: https://github.com/minetest/minetest/blob/6de8d77e17017cd5cc7b065d42566b6b1cd076cc/builtin/game/statbars.lua#L30-L37
+local function scaleToDefault(player, field)
+	-- Scale "hp" or "breath" to supported amount
+	local current = player["get_" .. field](player)
+	local max_display = math.max(player:get_properties()[field .. "_max"], current)
+	return math.round(current / max_display * max[field])
 end
 
 minetest.register_entity("gauges:hp_bar", {
@@ -50,8 +60,8 @@ minetest.register_entity("gauges:hp_bar", {
 			return
 		end
 
-		local hp = min(player:get_hp(), 20)
-		local breath = min(player:get_breath(), max_breath)
+		local hp = scaleToDefault(player, "hp")
+		local breath = scaleToDefault(player, "breath")
 
 		if self.hp ~= hp or self.breath ~= breath then
 			local health_t = "health_"..hp..".png"
@@ -61,7 +71,7 @@ minetest.register_entity("gauges:hp_bar", {
 				health_t = "blank.png"
 			end
 
-			if breath == max_breath then
+			if breath == max.breath then
 				breath_t = "blank.png"
 			end
 
