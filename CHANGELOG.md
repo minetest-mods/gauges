@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- [Health and breath bars now adapt to custom maximum values instead of being hardcoded to 20 and 11 respectively.](https://github.com/minetest-mods/gauges/pull/9)
+
+### Fixed
+
+- [The health bar entity is no longer lost when a player teleports.](https://github.com/minetest-mods/gauges/pull/10)
+  - A side effect is that health bar entities are no longer saved in map metadata.
+
 ## [1.0.4] - 2020-09-27
 
 ### Added
