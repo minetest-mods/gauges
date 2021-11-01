@@ -45,6 +45,7 @@ minetest.register_entity("gauges:hp_bar", {
 	textures = {"blank.png"},
 	collisionbox = {0},
 	physical = false,
+	static_save = false,
 
 	on_step = function(self)
 		local player = self.wielder
