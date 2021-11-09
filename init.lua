@@ -3,6 +3,10 @@
 -- Copyright © 2014-2020 4aiman, Hugo Locurcio and contributors - MIT License
 -- See `LICENSE.md` included in the source distribution for details.
 
+local function round(v)
+	return math.floor(v + 0.5)
+end
+
 local enabled = minetest.settings:get_bool("health_bars") ~= false
 if enabled then
 	enabled = minetest.settings:get_bool("enable_damage")
@@ -36,7 +40,7 @@ local function scaleToDefault(player, field)
 	-- Scale "hp" or "breath" to supported amount
 	local current = player["get_" .. field](player)
 	local max_display = math.max(player:get_properties()[field .. "_max"], current)
-	return math.round(current / max_display * max[field])
+	return round(current / max_display * max[field])
 end
 
 minetest.register_entity("gauges:hp_bar", {
