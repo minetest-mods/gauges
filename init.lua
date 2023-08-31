@@ -35,7 +35,8 @@ local function add_gauge(player)
 	end
 end
 
--- credit: https://github.com/minetest/minetest/blob/6de8d77e17017cd5cc7b065d42566b6b1cd076cc/builtin/game/statbars.lua#L30-L37
+-- credit:
+-- https://github.com/minetest/minetest/blob/master/builtin/game/statbars.lua#L31-L37
 local function scaleToDefault(player, field)
 	-- Scale "hp" or "breath" to supported amount
 	local current = player["get_" .. field](player)
